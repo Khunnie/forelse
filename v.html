@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul{
+				position: relative;
+				width: 500px;
+				height: 500px;
+				margin: 20px auto;
+			}
+			li{
+				list-style:none;
+				width: 50px;
+				height: 50px;
+				background: greenyellow;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="随机生成li" id="button"/>
+		<ul id="oUl"></ul>
+		<script>
+			var Btn = document.getElementById("button");
+			var oUl = document.getElementById("oUl");
+			var num = 0;
+			var str = "";
+			Btn.onclick=function(){
+				//清空
+				str="";
+				for(var i=0; i<5; i++){
+					var l=i*50;
+					var t=i*50;
+					if(num == 0){
+					//如果a=0，V向左			
+						if ( i > 2 ) {
+							l = (4 - i)*50;
+						};
+					}else if(num==1){
+					// 如果a=1 向上				
+						if ( i > 2 ) {
+							t = (4 - i)*50;
+						};
+					}else if(num==2){
+					//如果a=2 向右
+						if ( i >= 2 ) {
+							l = (i-2)*50;
+						}else{
+							l=(2-i)*50;
+						}
+	
+					}else if ( num ==3 ){
+					// 如果a=3 向下
+						if ( i >= 2 ) {
+							t = (i-2)*50;
+						}else{
+							t=(2-i)*50;
+						}
+					} else if (num >3 ){
+						num = 0;
+	
+					};
+	
+					str += '<li style="left:' + l + 'px;top:' + t +'px;"></li>';
+				}
+	
+					num++;
+					oUl.innerHTML = str;
+				
+			}
+
+
+	
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			a{
+				text-decoration: none;
+			}
+			.image{
+				width: 500px;
+				height: 500px;
+				margin:30px auto;
+			}
+			.play{
+				width: 300px;
+				margin: auto;
+			}
+			.play span{
+				width: 100px;
+				height: 35px;
+				line-height: 35px;
+				text-align: center;
+				background: peru;
+				color: #fff;
+				display: inline-block;
+				margin-left: 20px;
+				cursor: pointer;
+			}
+			.play span:hover{
+				background:burlywood;
+			}
+			#number{
+				width: 200px;
+				height: 25px;
+				text-align: center;
+				position: absolute;
+				bottom: 0;
+				left: 150px;
+			}
+			#photo{
+				margin-top: 10px;
+				position: relative;
+			}
+			#photo img{
+				width: 500px;
+				height: 500px;
+			}
+			#photo a{
+				background: #999;
+				font-size:36px;
+				width: 50px;
+				height: 100px;
+				color: #fff;
+				opacity: .8;
+				position:absolute ;
+				top: 150px;
+				text-align: center;
+				line-height: 100px;
+			}
+			#photo a:hover{
+				opacity: .4;
+			}
+			#prev{
+				right: 0;
+			}
+			#state{
+				width: 100%;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				padding: 0;
+				margin: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="image">
+			<div class="play">
+				<span id="order">顺序播放</span>
+				<span id="cycle">循环播放</span>
+			</div>
+			<div id="photo">
+				<img src="" alt="" />
+				<p id="state">详细说明</p>
+				<span id="number">数量加载中...</span>
+				<a href="javascript:;" id="next">&lt;</a>
+				<a href="javascript:;" id="prev">&gt;</a>
+			</div>
+		</div>
+		<script>
+			var Image = document.getElementsByTagName("img")[0];
+			var Number = document.getElementById("number");
+			var order = document.getElementById("order");
+			var cycle = document.getElementById("cycle");
+			var next = document.getElementById("next");
+			var prev = document.getElementById("prev");
+			var State = document.getElementById("state");
+			var arrImg =["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"]
+			var arrState = ["哟哟哟，好美哟","恩，这是什么我也不知道","哎哟喂，照骗","好了，欣赏完毕"]
+			//图片初始化
+			var num = 0;
+			function Init () {
+				Image.src = arrImg[num];
+				Number.innerHTML = num + 1 + '/' + arrImg.length;
+				state.innerHTML = arrState[num];
+			};
+			Init();
+			//上一张
+			next.onclick = function(){
+				if(num<=0){
+					num = arrImg.length-1;
+				}else{
+					num--;
+				}
+				Init();
+			}
+			//下一张
+			prev.onclick = function(){
+				if(num>=arrImg.length-1){
+					num = 0;
+				}else{
+					num++;
+				}
+				Init();
+			}
+			order.onclick =function(){
+				next.onclick = function(){
+					if(num<=0){
+						alert("这是第一张")
+					}else{
+						num--;
+					}
+					Init();
+				}
+				prev.onclick = function(){
+					if(num>=arrImg.length-1){
+						alert("最后一张了")
+					}else{
+						num++;
+					}
+					Init();
+				}
+			}
+			//循环
+			cycle.onclick = function(){
+				next.onclick = function(){
+					if(num<=0){
+						num = arrImg.length-1;
+					}else{
+						num--;
+					}
+					Init();
+				}
+				//下一张
+				prev.onclick = function(){
+					if(num>=arrImg.length-1){
+						num = 0;
+					}else{
+						num++;
+					}
+					Init();
+				}
+			}
+		</script>
+	</body>
+</html>

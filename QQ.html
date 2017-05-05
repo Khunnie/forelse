@@ -1,0 +1,77 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+p{margin:0;}
+img{width:30px;height:30px; vertical-align:middle;}
+#box{width:300px;margin:30px auto;border:1px solid #000;}
+#content{height:350px; overflow:auto;font:14px/30px "宋体";color:#fff;padding:5px; word-break:break-all;}
+#footer{height:50px;padding:5px 10px;background:#ccc;border-top:1px solid #333;}
+textarea{ vertical-align:middle;height:30px; font:14px/30px "宋体"; resize:none; }
+input{ vertical-align:middle;height:40px; border:none;}
+#img{ cursor:pointer;}
+.clear{clear:both;}
+.clear:after{content:"";display:block;clear:both; }
+.left,.right{ overflow:hidden;zoom:1;margin:10px 0;}
+.left img{float:left;}
+.left p{float:left; background:green;margin-left:10px; max-width:220px;}
+.right img{float:right; }
+.right p{float:right; background:#000;max-width:220px;margin-right:10px;}
+</style>
+    <script>
+        /*
+            布尔值：
+                true 真
+                false 假
+        */
+
+
+        window.onload = function(){
+            var oImg = document.getElementById("img");
+            var oText = document.getElementById("text");
+            var oBtn = document.getElementById("btn");
+            var content = document.getElementById("content");
+
+            //点击图片两张图片进行切换
+
+             var sClass = "left";  //全局变量
+
+            oImg.onclick = function (){
+
+                if(sClass == "left"){ //为true 切换到 3.jpg
+                    this.src = "./img/3.jpg";
+                    sClass = "right";
+                }else{
+                     this.src = "./img/2.jpg";
+                     sClass = "left";
+                }
+            };
+
+            //点击btn发送信息
+
+            oBtn.onclick = function (){
+                content.innerHTML =content.innerHTML+'<div class="'+ sClass +'"><img src="'+ oImg.src +'" /><p> '+ oText.value  +' </p></div>';
+                oText.value = "";
+
+            };
+
+        };
+    </script>
+</head>
+<body>
+<div id="box">
+	<div id="content">
+        
+    </div>
+    <div id="footer">
+    	<img src="img/2.jpg" id="img" />
+        <textarea id="text"></textarea>
+        <input type="button" value="发送" id="btn" />
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			section{
+				position: absolute;
+				left:50px;
+				top: 50px;
+			}
+			div{
+				width: 50px;
+				height: 50px;
+				background: black;
+				border: 1px solid aquamarine;
+				float: left;
+				position: absolute;
+				left:0px;
+				top: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="生成100个DIV" id="button"/>
+		<section id="section"></section>
+		<script>
+			var Input = document.getElementById("button");
+			var Section = document.getElementById("section");
+
+			var arr = ["pink","peachpuff","lightcoral"]
+			var l = 0;
+			var t = 0;
+			var str = "";
+			for(var i = 0; i<100; i++){
+				l = (i%10)*52;
+				t = Math.floor( i/10 ) * 52;
+				console.log(t);
+				str += "<div style='left:"+l+"px;top:"+t+"px;background-color:"+arr[i%3]+";'>" + (i+1) + "</div>";
+			}
+			Input.onclick = function(){
+				Section.innerHTML = str;
+			}
+			
+		</script>
+	</body>
+</html>
